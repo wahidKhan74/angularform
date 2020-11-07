@@ -5,11 +5,12 @@
             <div class="form-group col-sm-6" >
                 <label for="firstName">First Name</label>
                 <input type="text" class="form-control" id="firstName" name="firstName" formControlName="firstName" 
-                 placeholder="Required First Name">
+                 placeholder="Required First Name" dir-letter-only>
                 <small *ngIf="hasErrors('firstName')" class="hep-block" [ngClass]="{'has-error':hasErrors('firstName')}">
                     <span *ngIf="firstName.errors.required">First Name is required.</span>
                     <span *ngIf="firstName.errors.minlength">First Name must be at leat 2 character long.</span>
                     <span *ngIf="firstName.errors.maxlength">First Name cannot exceed 15 characters.</span>
+                    <span *ngIf="firstName.errors.letterOnly">{{firstName.errors.letterOnly}}</span>
                 </small>
               </div>
               <div class="form-group col-sm-6" >

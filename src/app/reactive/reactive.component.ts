@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { letterOnlyValidtor } from '../directives/letterOnly.directive';
 
 @Component({
   selector: 'app-reactive',
@@ -15,7 +16,7 @@ export class ReactiveComponent implements OnInit {
 
   ngOnInit(): void {
     this.exampleForm = this.formBuilder.group({
-      firstName:['',[Validators.required,Validators.minLength(2),Validators.maxLength(15)]],
+      firstName:['',[Validators.required,Validators.minLength(2),Validators.maxLength(15),letterOnlyValidtor()]],
       lastName:['',[Validators.required,Validators.minLength(2),Validators.maxLength(15)]],
       middleInitial:['',[Validators.required,Validators.maxLength(1)]],
       gender:['',[Validators.required]]
