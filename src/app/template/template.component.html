@@ -1,0 +1,71 @@
+<h4>Template-Driven Form: Example</h4>
+<div class="well well-lg">
+    <form #exampleForm="ngForm" class="form-horizontal" novalidate>
+        <div [hidden]="submitted">
+            <div class="form-group" >
+                <label for="firstName">First Name</label>
+                <input type="text" class="form-control" id="firstName" name="firstName" [(ngModel)]="person.firstName" 
+                 #firstName="ngModel" minlength="2" maxlength="16" required placeholder="Required First Name"
+                 >
+                <small *ngIf="hasErrors(firstName)" class="hep-block" [ngClass]="{'has-error':hasErrors(firstName)}">
+                    <span *ngIf="firstName.errors.required">First Name is required.</span>
+                    <span *ngIf="firstName.errors.minlength">First Name must be at leat 2 character long.</span>
+                    <span *ngIf="firstName.errors.maxlength">First Name cannot exceed 15 characters.</span>
+                </small>
+              </div>
+              <div class="form-group" >
+                <label for="lastName">Last Name</label>
+                <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="person.lastName" 
+                 #lastName="ngModel" minlength="2" maxlength="16" required placeholder="Required last Name"
+                 >
+                <small *ngIf="hasErrors(lastName)" class="hep-block" [ngClass]="{'has-error':hasErrors(lastName)}">
+                    <span *ngIf="lastName.errors.required">Last Name is required.</span>
+                    <span *ngIf="lastName.errors.minlength">Last Name must be at leat 2 character long.</span>
+                    <span *ngIf="lastName.errors.maxlength">Last Name cannot exceed 15 characters.</span>
+                </small>
+              </div>
+
+              <div class="form-group" >
+                <label for="middleInitial">Middle Name</label>
+                <input type="text" class="form-control" id="middleInitial" name="middleInitial" [(ngModel)]="person.middleInitial" 
+                 #middleInitial="ngModel" maxlength="1" required placeholder="Required last Name"
+                 >
+                <small *ngIf="hasErrors(middleInitial)" class="hep-block" [ngClass]="{'has-error':hasErrors(middleInitial)}">
+                    <span *ngIf="middleInitial.errors.required">Middle Name is required.</span>
+                    <span *ngIf="middleInitial.errors.maxlength">Middle Name must be 1 character long.</span>
+                </small>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="gender"> * Gender: </label>
+                <select id="gender" class="form-control" name="gender" [(ngModel)]="person.gender" required #gender="ngModel">
+                  <option value="">Select One</option>
+                  <option value="M">Male</option>
+                  <option value="F">Female</option>
+                </select>
+                <small *ngIf="hasErrors(gender)" class="hep-block" [ngClass]="{'has-error':hasErrors(gender)}">
+                    <span *ngIf="gender.errors.required">Gender is required.</span>
+                </small>
+              </div>
+              
+              <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1">
+              </div>
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+              </div>
+              <button type="submit" class="btn btn-default" (click)="resetForm(exampleForm)">Reset</button>
+              <button type="submit" class="btn btn-primary" (click)="submitForm(exampleForm)">Submit</button>
+        </div>
+        
+      </form>
+      <div *ngIf="submitted" class="container well well-lg">
+        <label for="">You've submitted Form !</label>
+        <pre>
+            {{exampleForm.value | json}}
+        </pre>
+        <button type="button" class="btn btn-default" (click)="resetForm(exampleForm)"> Add new</button>
+      </div>
+
+</div>
